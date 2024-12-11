@@ -1,4 +1,4 @@
-type Path<T, K> = K extends string ? K extends "" ? T :
+export type Path<T, K> = K extends string ? K extends "" ? T :
   K extends `${infer P}.${infer R}` 
     ? P extends keyof T 
       ? Path<T[P], R> 
@@ -8,7 +8,7 @@ type Path<T, K> = K extends string ? K extends "" ? T :
       : never
   : T;
 
-type TestPath<T, K, A = K> = K extends string ? K extends "" ? A :
+export type TestPath<T, K, A = K> = K extends string ? K extends "" ? A :
   K extends `${infer P}.${infer R}` 
     ? P extends keyof T 
       ? TestPath<T[P], R, A> 
