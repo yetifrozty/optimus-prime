@@ -69,11 +69,7 @@ export function loadData<Source, Target>(
     }
     return target as Target;
   } else if ('each' in resolver && resolver.each) {
-    if (!Array.isArray(current)) {
-      throw new Error(`Expected an array at path ${path.join(' -> ')} for 'each' resolver.`);
-    }
-    
-    return current.map((item) => loadData(item, resolver.each!)) as Target;
+    return Object.values(current).filter(item => item != null).map((item) => loadData(item, resolver.each!)) as Target;
   }
 
   // If neither 'fields' nor 'each' is present, return the current value
