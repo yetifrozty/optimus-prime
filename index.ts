@@ -45,6 +45,10 @@ export function loadData<Source, Target>(
 ): Target {
   const path = resolver.from !== "" && resolver.from?.split(".") || [];
   
+  if ('value' in resolver) {
+    return resolver.value;
+  }
+
   // Safely navigate the path within the source
   let current: any = source;
   

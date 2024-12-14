@@ -34,6 +34,7 @@ const source: Source2 = {
 interface Target {
   something: [{Title: string, type: "text"}]
   else: {what: {is: {going: {on: string}}}}
+  other: string
 }
 
 let data = loadData<Source2, Target>(source, createResolver<Source2, Target, "">("", {
@@ -66,6 +67,9 @@ let data = loadData<Source2, Target>(source, createResolver<Source2, Target, "">
           }
         })
       }
+    }),
+    other: createResolver("", {
+      value: "other"
     })
   }
 }))
